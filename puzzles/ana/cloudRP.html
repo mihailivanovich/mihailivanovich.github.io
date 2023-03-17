@@ -42,7 +42,7 @@ width="370px">
 
   im = document.getElementsByClassName("a");
 
-act=false;    bg1.style.opacity=0;  imM.style.opacity=0;  imB.style.opacity=0;
+act=false;    bg1.style.opacity=0;  imM.style.opacity=0;  imB.style.opacity=0; myTextarea.style.opacity=0;
 tint=40; nfin=800; nf05=nfin/2;  dbg=50;  yt=0; yk=0;  kpb=0;  kr=[];
    
 lp=2;   let tn=[]; tn[0]=[];  tn[1]=[];  ist=0;
@@ -83,7 +83,7 @@ function Cloud(){ kpb=0; { for (j = 0; j < lp; j++) {
    bg1.style.opacity=kbg;
   
   if (kr[0]>kr[1]) {kram=kr[0]} else {kram=kr[1]}; 
-  im[0].style.opacity=kram*kram;  
+  im[0].style.opacity=kram*kram;  myTextarea.style.opacity=kram;
   imM.style.opacity=kram;  imB.style.opacity=kram;
   for (j = 0; j < lp; j++) {
   im[j+1].style.opacity=kr[j];}
