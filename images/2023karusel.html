@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>2023karusel</title>
+<style>
+ .bg {position: absolute; left: 10px; top: 15px; width: 800px; height: 535px}
+ .a {position: absolute; border-radius: 40px}
+ .m {position: absolute; left: 350px; top: 160px; width: 200px; border-radius: 80px; opacity: 0;}
+ 
+ div {position: absolute; left: 250px; top: 560px;}
+ #b1{width: 100px; height: 30px; color: white; background-color: rgb(0,100,0); font-weight: bold}
+ .bt2 {background-color: rgba(0,250,0,0.5); width: 80px; height: 25px}  
+ .bt4 {background-color: rgba(250,0,0,0.5); width: 80px; height: 25px}  
+</style>
+</head>
+<body>
+  
+<img class="bg" src="imbg/jap01.jpeg">
+<img class="bg" src="imbg/jap02.jpeg">
+<img class="bg" src="imbg/pyatn01.jpeg">
+<img class="bg" src="imbg/jap03.jpeg">
+<img class="bg" src="imbg/jap04.jpeg">
+<img class="bg" src="imbg/novok00.jpeg">
+<img class="bg" src="imbg/jap06.jpeg">
+<img class="bg" src="imbg/pyatn02.jpeg">
+<img class="bg" src="imbg/jap05.jpeg">
+<img class="bg" src="imbg/pyatn00.jpeg">
+
+<img class="a" src="Valdek.jpeg">   
+<img class="a" src="../puzzles/cuba.jpeg">
+<img class="a" src="BRB_01.jpeg">
+<img class="a" src="ML.jpeg">
+<img class="a" src="DBLD_02.jpeg">
+<img class="a" src="MI_01.jpeg">
+
+<img class="m" src="impng/vtk02.png">
+<img class="m" src="impng/GDV1.png">
+<img class="m" src="impng/RP01.png">
+<img class="m" src="impng/Nick.png">
+
+<div>
+<input type='button' class="bt4" value='slower'onclick="tint*=1.2">
+<input id="b1" type='button' value='PLAY'  onclick="GoCloud()">
+<input type='button' class="bt2" value='faster'onclick="tint/=1.2">
+<button onclick="dfi=-dfi">Revers</button>
+</div>
+<script type="text/javascript">
+
+ bg = document.getElementsByClassName("bg"); nbg=bg.length;
+ pic=document.getElementsByClassName("a"); npic=pic.length;
+ pc0=document.getElementsByClassName("m"); npc0=pc0.length;
+act=false;  ibg=0;  ntek=0; ntek2=1;  dbg=80;  nfin=400;  tint=20; yt=0;
+pi=Math.PI;  dfi=2*pi/nfin;  fitek=0; 
+xc=bg[0].width/2;  yc=bg[0].height/2-50;  rp=0.8*yc-pic[0].width; kpic=0;
+
+xpf=350;  ypf=160;  xpn=[]; ypn=[];     xpt=350;  ypt=160;  opt=0;  ng=0;
+xpn=0;   ypn=500;  
+
+  for (j = 1; j < nbg; j++) {bg[j].style.opacity=0; } 
+
+ function xyt(x1,x2,y1,y2,z1,z2,k1,k2) { if ((ibg>x1)&&(ibg<=x2)) {yt=y1+(y2-y1)/(x2-x1)*(ibg-x1); zt=z1+(z2-z1)/(x2-x1)*(ibg-x1); kt=k1+(k2-k1)/(x2-x1)*(ibg-x1); }
+  xpt=yt;  ypt=zt; opt=kt }
+
+function ris(){fitek=fitek+dfi;
+for (j = 0; j < npic; j++) {pic[j].width=100;  
+ fit=  2*pi/npic*j-fitek//-dfi*ibg;
+  xp=xc+rp*Math.sin(fit);  yp=yc+rp*Math.cos(fit);
+ pic[j].style.left=xp+"px";  pic[j].style.top=yp+"px";
+ pic[j].style.opacity=kpic;}
+
+ pc0[ng].style.left=xpt+"px";  pc0[ng].style.top=ypt+"px";
+ pc0[ng].style.opacity=opt;  pc0[ng].style.width=200*opt+"px";
+}
+
+ris();
+
+function GoCloud(){
+ act=!act; if (act) {b1.value='STOP'; b1.style.background='rgb(100,0,0)'} else 
+ {b1.value='PLAY'; b1.style.background='rgb(0,100,0)'}
+ let tim = setTimeout(function timer() {if (!act) {clearInterval(tim)} else { ibg++; Cloud();}
+if (act) tim = setTimeout(timer, tint);
+},tint); }
+
+ function tbg(x1,x2,y1,y2) { if ((ibg>x1)&&(ibg<=x2)) yt=y1+(y2-y1)/(x2-x1)*(ibg-x1);
+ if (kpb==0) kpic=yt; if (kpb==1) kop=yt; }
+
+function xy0(){xpn=Math.random()*bg[0].width; 
+               ypn=Math.random()*bg[0].height;}
+
+function Cloud(){ kpb=0;
+tbg(0,50,0,0);  tbg(50,50+dbg,0,1); tbg(dbg+50,nfin-dbg,1,1); tbg(nfin-dbg,nfin,1,0);
+kpb=1;
+tbg(0,nfin-dbg,0,0); tbg(nfin-dbg,nfin,0,1);
+bg[ntek].style.opacity=1-kop; bg[ntek2].style.opacity=kop; 
+
+xyt(0,dbg,xpn,xpf,ypn,ypf,0,1);
+xyt(dbg,nfin-dbg,xpf,xpf,ypf,ypf,1,1);
+xyt(nfin-dbg,nfin,xpf,xpn,ypf,ypn,1,0);
+
+ris();
+if (ibg==nfin) {ng++; if (ng==npc0) ng=0; xy0(); ntek=ntek+1; if (ntek==(nbg-1)) {ntek2=0;} else {ntek2=ntek+1;}
+if (ntek==(nbg)) {ntek=0; ntek2=1;}; ibg=0;}
+} 
+
+</script>
+</body></html>
