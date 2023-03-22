@@ -5,7 +5,7 @@
 <title>2023karusel</title>
 <style>
  .bg {position: absolute; left: 10px; top: 15px; width: 800px; height: 535px}
- .a {position: absolute; border-radius: 40px}
+ .a {position: absolute; border-radius: 40px; width: 100px;}
  .m {position: absolute; left: 350px; top: 160px; width: 200px; border-radius: 80px; opacity: 0;}
  
  div {position: absolute; left: 250px; top: 560px;}
@@ -63,7 +63,7 @@ xpn=0;   ypn=500;
   xpt=yt;  ypt=zt; opt=kt }
 
 function ris(){fitek=fitek+dfi;
-for (j = 0; j < npic; j++) {pic[j].width=100;  
+for (j = 0; j < npic; j++) {  
  fit=  2*pi/npic*j-fitek//-dfi*ibg;
   xp=xc+rp*Math.sin(fit);  yp=yc+rp*Math.cos(fit);
  pic[j].style.left=xp+"px";  pic[j].style.top=yp+"px";
