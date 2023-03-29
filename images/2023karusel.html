@@ -1,43 +1,54 @@
 <!DOCTYPE html>
 
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="../puzzles/ICO/murr.ico" type="image/x-icon">
-<title>2023karusel</title>
+<link rel="icon" href="../puzzles/ICO/ml00.ico" type="image/x-icon">
+<title>karusel26</title>
 <style>
- .bg {position: absolute; left: 10px; top: 15px; width: 800px; height: 535px}
+ .bg {position: absolute; left: 10px; top: 15px; width: 900px; height: 540px}
  .a {position: absolute; border-radius: 40px; width: 100px;}
- .m {position: absolute; left: 350px; top: 160px; width: 200px; border-radius: 80px; opacity: 0;}
- 
+ .m {position: absolute; width: 300px; border-radius: 80px; opacity: 0;}
  div {position: absolute; left: 250px; top: 560px;}
  #b1{width: 100px; height: 30px; color: white; background-color: rgb(0,100,0); font-weight: bold}
  .bt2 {background-color: rgba(0,250,0,0.5); width: 80px; height: 25px}  
  .bt4 {background-color: rgba(250,0,0,0.5); width: 80px; height: 25px}  
+p {position: absolute; top: 430px; left: 15px; width: 190px; border: none; background: none; color: yellow; font-family: Courier New; font-size: 60px; font-weight: bold; z-index: 1;}
 </style>
 </head>
 <body>
-  
-<img class="bg" src="imbg/jap01.jpeg">
-<img class="bg" src="imbg/jap02.jpeg">
+  <p>62!!!</p>
+<img class="bg" src="imbg26/26march.jpeg">
+<img class="bg" src="imbg26/obit2.jpeg">
 <img class="bg" src="imbg/pyatn01.jpeg">
-<img class="bg" src="imbg/jap03.jpeg">
-<img class="bg" src="imbg/jap04.jpeg">
-<img class="bg" src="imbg/novok00.jpeg">
-<img class="bg" src="imbg/jap06.jpeg">
-<img class="bg" src="imbg/pyatn02.jpeg">
-<img class="bg" src="imbg/jap05.jpeg">
 <img class="bg" src="imbg/pyatn00.jpeg">
+<img class="bg" src="imbg26/akad3.jpeg">
+<img class="bg" src="imbg26/obit1.jpeg">
+<img class="bg" src="imbg/pyatn02.jpeg">
+<img class="bg" src="imbg26/pool0.jpeg">
+<img class="bg" src="imbg26/well0.jpeg">
+<img class="bg" src="imbg26/wdom0.jpeg">
+<img class="bg" src="imbg26/zima0.jpeg">
+<img class="bg" src="imbg26/well1.jpeg">
+<img class="bg" src="imbg26/akad1.jpeg">
+<img class="bg" src="imbg/novok00.jpeg">
+<img class="bg" src="imbg26/krpl0.jpeg">
+<img class="bg" src="imbg26/chpr0.jpeg">
 
-<img class="a" src="../puzzles/Valdek.jpg">   
-<img class="a" src="cuba.jpeg">
-<img class="a" src="../puzzles/BRB_01.jpg">
-<img class="a" src="../puzzles/ML_01.jpg">
-<img class="a" src="../puzzles/DBLD_02.jpg">
-<img class="a" src="../puzzles/MI_01.jpg">
-
-<img class="m" src="impng/vtk02.png">
+<img class="m" src="impng/26m61.png"> 
+<img class="m" src="impng/vtk02.png"> 
 <img class="m" src="impng/GDV1.png">
+<img class="m" src="impng/MI_01.png">
 <img class="m" src="impng/RP01.png">
 <img class="m" src="impng/Nick.png">
+
+<img class="a" src="imzv/murr200.jpg"> 
+<img class="a" src="imzv/ralf.jpeg"> 
+<img class="a" src="imzv/vas00.jpeg"> 
+<img class="a" src="imzv/solom.jpeg">
+<img class="a" src="imzv/BRB_01.jpeg">
+<img class="a" src="imzv/ML.jpeg">
+<img class="a" src="imzv/DBLD_02.jpeg">
+<img class="a" src="imzv/2.jpg">
+<img class="a" src="imzv/3.jpg">
 
 <div>
 <input type='button' class="bt4" value='slower'onclick="tint*=1.2">
@@ -50,12 +61,11 @@
  bg = document.getElementsByClassName("bg"); nbg=bg.length;
  pic=document.getElementsByClassName("a"); npic=pic.length;
  pc0=document.getElementsByClassName("m"); npc0=pc0.length;
+  wa=pic[0].width;  wm=pc0[0].width;
 act=false;  ibg=0;  ntek=0; ntek2=1;  dbg=80;  nfin=400;  tint=20; yt=0;
 pi=Math.PI;  dfi=2*pi/nfin;  fitek=0; 
-xc=bg[0].width/2;  yc=bg[0].height/2-50;  rp=0.8*yc; kpic=0;
-
-xpf=350;  ypf=160;  xpn=[]; ypn=[];     xpt=350;  ypt=160;  opt=0;  ng=0;
-xpn=0;   ypn=500;  
+xc=bg[0].width/2-wa/2;  yc=bg[0].height/2-wa/2;  rp=0.9*yc; kpic=0;
+xpf=xc-wm/2+wa/2;   ypf=140;  xpn=0;   ypn=500;  ng=0;   opt=0; xpt=0; ypt=0;  
 
   for (j = 1; j < nbg; j++) {bg[j].style.opacity=0; } 
 
@@ -63,14 +73,14 @@ xpn=0;   ypn=500;
   xpt=yt;  ypt=zt; opt=kt }
 
 function ris(){fitek=fitek+dfi;
-for (j = 0; j < npic; j++) {  
- fit=  2*pi/npic*j-fitek//-dfi*ibg;
-  xp=xc+rp*Math.sin(fit);  yp=yc+rp*Math.cos(fit);
+for (j = 0; j < npic; j++) { 
+ fit=  2*pi/npic*j-fitek;
+  xp=xc+1.7*rp*Math.sin(fit);  yp=yc+rp*Math.cos(fit);
  pic[j].style.left=xp+"px";  pic[j].style.top=yp+"px";
  pic[j].style.opacity=kpic;}
 
  pc0[ng].style.left=xpt+"px";  pc0[ng].style.top=ypt+"px";
- pc0[ng].style.opacity=opt;  pc0[ng].style.width=200*opt+"px";
+ pc0[ng].style.opacity=opt;  pc0[ng].style.width=wm*opt+"px";
 }
 
 ris();
