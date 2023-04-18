@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" href="../puzzles/ICO/murr.ico" type="image/x-icon">
+<title>2023karwww</title>
+<style>
+ .bg {position: absolute; left: 60px; top: 54px; width: 900px; height: 540px}
+ #rama {position: absolute; width: 1010px; height: 640px; left: 5px; top: 5px;}
+ .a {position: absolute; border-radius: 40px; width: 100px; opacity: 0;}
+ .m {position: absolute; width: 250px; border-radius: 80px; opacity: 0;}
+ div {position: absolute; left: 350px; top: 640px;}
+ #b1{width: 100px; height: 30px; color: white; background-color: rgb(0,100,0); font-weight: bold}
+ .bt2 {background-color: rgba(0,250,0,0.5); width: 80px; height: 25px}  
+ .bt4 {background-color: rgba(250,0,0,0.5); width: 80px; height: 25px} 
+ #rad {position: absolute; top: 635px; left: 20px; color: black; font-size: 14px} 
+p {position: absolute; top: 520px; left: 790px; width: 190px;color: yellow; font-family: Courier New; font-size: 30px; font-weight: bold; }
+</style>
+</head>
+<body> 
+<img id="rama" src="../puzzles/galina/rama.jpg"> 
+<img class="bg" src="imbg26/26march.jpeg"> 
+<img class="bg" src="imbg/pyatn00.jpeg">
+<img class="bg" src="imbg26/akad3.jpeg">
+<img class="bg" src="imbg26/akad1.jpeg">
+<img class="bg" src="imbg26/obit1.jpeg"> 
+<img class="bg" src="imbg26/krpl0.jpeg">
+<img class="bg" src="imbg26/chpr0.jpeg">
+<img class="bg" src="imbg26/zima0.jpeg">
+<img class="bg" src="imbg/pyatn02.jpeg">
+<img class="bg" src="imbg26/pool0.jpeg">
+<!-- <img class="bg" src="imbg26/well0.jpeg">
+<img class="bg" src="imbg26/wdom0.jpeg">
+<img class="bg" src="imbg26/well1.jpeg">-->
+<img class="bg" src="imbg/novok00.jpeg">
+ 
+<p>Dedu 85!</p>
+<img class="a" src="../puzzles/galina/images/0.gif"> 
+<img class="a" src="../puzzles/galina/images/1.gif"> 
+<img class="a" src="../puzzles/galina/images/2.gif"> 
+<img class="a" src="../puzzles/galina/images/3.gif"> 
+<img class="a" src="../puzzles/galina/images/4.gif"> 
+<img class="a" src="../puzzles/galina/images/5.gif"> 
+<img class="a" src="../puzzles/galina/images/6.gif"> 
+<img class="a" src="../puzzles/galina/images/14.gif">  
+
+<img class="a" src="imzv/murr200.jpg"> 
+<img class="a" src="imzv/ralf.jpeg"> 
+<img class="a" src="imzv/vas00.jpeg"> 
+<!-- <img class="a" src="imzv/solom.jpeg"> -->
+<img class="a" src="imzv/BRB_01.jpeg">
+<img class="a" src="imzv/ML.jpeg">
+<img class="a" src="imzv/DBLD_02.jpeg">
+<img class="a" src="imzv/2.jpg">
+<img class="a" src="imzv/3.jpg">
+ 
+<img class="m" src="impng/GDV1.png">
+<img class="m" src="impng/26m61.png"> 
+<img class="m" src="impng/vtk02.png"> 
+<img class="m" src="impng/Nick.png">
+<img class="m" src="impng/RP01.png">
+<img class="m" src="impng/MI_01.png">
+
+<div>
+<input type='button' class="bt4" value='slower'onclick="tint*=1.2">
+<input id="b1" type='button' value='PLAY'  onclick="GoCloud()">
+<input type='button' class="bt2" value='faster'onclick="tint/=1.2">
+<button onclick="dfi=-dfi">Revers</button>
+</div>
+<p id="rad">
+<input type="radio" name="radio" value="0" checked onclick = 'vrp=0; SetVar()'>Png
+<input type="radio" name="radio" value="1" onclick = 'vrp=1; SetVar()'>jpg
+<input type="radio" name="radio" value="2" onclick = 'vrp=2; SetVar()'>png+jpg </p>
+
+<script type="text/javascript">
+ bg = document.getElementsByClassName("bg"); nbg=bg.length;
+ pic= document.getElementsByClassName("a"); npic=pic.length;
+ pc0= document.getElementsByClassName("m"); npc0=pc0.length;  wm=pc0[0].width;
+       
+act=false;  ibg=0;  ntek=0; ntek2=1;  dbg=80;  nfin=400;  tint=20; 
+pi=Math.PI;  dfi=2*pi/nfin/5;  fitek=0; 
+xc=bg[0].width/2+10;  yc=bg[0].height/2-10;  rp=0.8*yc; 
+xpf=[]; ypf=[];  xpt=[]; ypt=[]; opt=[];
+
+for (i=0; i<3; i++) {xpf[i]=65+i*300; xpf[i+3]=65+i*300; ypf[i]=55;  ypf[i+3]=323;}    
+
+ ng=0;  dn=30;  kpic=0;  kop=0;  vrp=0;
+
+  for (j = 1; j < nbg; j++) {bg[j].style.opacity=0; } 
+  
+  SetVar();  SetArr(); ris();
+
+function SetVar() {for (j = 0; j < 16; j++) {pic[j].style.opacity=0; }   
+ if (vrp==0) {npic=8; kj=0; SetArr();} if (vrp==1) {npic=8; kj=8; SetArr();}
+     if (vrp==2) {npic=16; kj=0; SetArr();}}  
+
+function SetArr() { 
+ let j, i
+ let ntek = npic; arr0 = []; arr = []; //arr00 = []; 
+ for (i = 0; i < npic; i++) { arr0[i] = i; /*arr00[i] = i;*/  }
+    for (i = 0 ; i < npic ; i++) {
+        j = Math.floor(Math.random() * (ntek))
+        arr[i] = arr0[j];   //наверх
+        arr0[j] = arr0[ntek - 1];
+        ntek = ntek - 1;  }}
+
+ function xyt(x1,x2,y1,y2,z1,z2,k1,k2) { if ((ibg>=x1)&&(ibg<=x2)) 
+ {kf=(ibg-x1)/(x2-x1);  yt=y1+(y2-y1)*kf; zt=z1+(z2-z1)*kf; kt=k1+(k2-k1)*kf; }
+  xpt[i]=yt;  ypt[i]=zt; opt[i]=kt }
+
+function ris(){fitek=fitek+dfi;
+for (j = 0; j < npic; j++) { let i=arr[j];  fit=2*pi/npic*i-fitek;
+  xp=xc+1.9*rp*Math.sin(fit);  yp=yc+rp*Math.cos(fit);
+ pic[j+kj].style.left=xp+"px";  pic[j+kj].style.top=yp+"px";
+ pic[j+kj].style.opacity=kpic;}
+
+for (i=0; i<npc0; i++) { pc0[i].style.opacity=opt[i]; 
+  pc0[i].style.width=wm*opt[i]+"px";
+  pc0[i].style.left=+xpt[i]+"px";  pc0[i].style.top=ypt[i]+"px";}
+}
+
+function GoCloud(){ 
+ act=!act; if (act) {b1.value='STOP'; b1.style.background='rgb(100,0,0)'} else 
+ {b1.value='PLAY'; b1.style.background='rgb(0,100,0)'}
+ let tim = setTimeout(function timer() {if (!act) {clearInterval(tim)} else { ibg++; Cloud();}
+if (act) tim = setTimeout(timer, tint);
+},tint); }
+
+ function tbg(x1,x2,y1,y2) { if ((ibg>x1)&&(ibg<=x2)) yt=y1+(y2-y1)/(x2-x1)*(ibg-x1);
+ if (kpb==0) kpic=yt; if (kpb==1) kop=yt; }
+
+function Cloud(){ kpb=0;
+tbg(0,50,0,0);  tbg(50,50+dbg,0,1); tbg(dbg+50,nfin-dbg,1,1); tbg(nfin-dbg,nfin,1,0);
+kpb=1;
+tbg(0,nfin-dbg,0,0); tbg(nfin-dbg,nfin,0,1);
+bg[ntek].style.opacity=1-kop; bg[ntek2].style.opacity=kop; 
+
+for (i=0; i<npc0; i++) {
+xyt(0,20+i*dn,xc,xc,yc,yc,0,0);
+xyt(20+i*dn,dbg+i*dn,xc,xpf[i],yc,ypf[i],0,1);
+xyt(dbg+i*dn,nfin,xpf[i],xpf[i],ypf[i],ypf[i],1,1);
+xyt(nfin-50,nfin,xpf[i],xc,ypf[i],yc,1,0);
+}
+ris();
+if (ibg==nfin) {SetArr(); ng++; if (ng==npc0) ng=0;
+ntek=ntek+1; if (ntek==(nbg-1)) {ntek2=0;} else {ntek2=ntek+1;}
+if (ntek==(nbg)) {ntek=0; ntek2=1;}; ibg=0;}
+} 
+
+</script>
+</body></html>
