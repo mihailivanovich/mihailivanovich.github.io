@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" href="../puzzles/ICO/murr.ico" type="image/x-icon">
+<title>test GH</title>
+<style>
+ .bg {position: absolute; left: 10px; top: 15px; width: 800px; height: 535px}
+ .a {position: absolute; border-radius: 40px; width: 100px;}
+ .m {position: absolute; left: 280px; top: 135px; width: 280px; height: 280px; border-radius: 40px; opacity: 0;}
+ 
+ div {position: absolute; left: 250px; top: 560px;}
+ #b1{width: 100px; height: 30px; color: white; background-color: rgb(0,100,0); font-weight: bold}
+ .bt2 {background-color: rgba(0,250,0,0.5); width: 80px; height: 25px}  
+ .bt4 {background-color: rgba(250,0,0,0.5); width: 80px; height: 25px}  
+
+</style>
+</head>
+<body>
+  
+<img class=bg src="imbg26/akad0.jpeg">
+<img class="bg" src="imbg/jap02.jpeg">
+<img class=bg src="imbg26/akad1.jpeg">
+<img class="bg" src="imbg26/krpl0.jpeg">
+<img class=bg src="imbg26/akad3.jpeg">
+<img class="bg" src="imbg26/obit2.jpeg">
+<img class="bg" src="imbg26/pool0.jpeg">
+<img class="bg" src="imbg/jap05.jpeg">
+<img class="bg" src="imbg26/wdom0.jpeg">
+<img class="bg" src="imbg/pyatn00.jpeg">
+<img class="bg" src="imbg26/chpr0.jpeg">
+
+<img class="a" src="imzv/Valdek.jpeg">   
+<img class=a src="imzv/cuba.jpeg">
+<img class="a" src="imzv/BRB_01.jpeg">
+<img class="a" src="imzv/ML.jpeg">
+<img class="a" src="imzv/3.jpg">
+<img class="a" src="imzv/Murr200.jpg">
+<img class="a" src="imzv/DBLD_02.jpeg">
+<img class="a" src="imzv/MI_01.jpeg">
+
+  <p id= "p0">   </p>   //for img "m"
+
+<div>
+<input type='button' class="bt4" value='slower'onclick="tint*=1.2">
+<input id="b1" type='button' value='PLAY'  onclick="GoCloud()">
+<input type='button' class="bt2" value='faster'onclick="tint/=1.2">
+<button onclick="dlx=-dlx">Revers</button>
+</div>
+<script type="text/javascript">
+ 
+ dir='kandin/';  
+ Arim = ["impng/GDV1.png",dir+"k01.jpeg",dir+"k02.jpeg",dir+"k03.jpeg",dir+"gd02.jpg",
+  dir+"k19.jpg",dir+"k05.jpeg",dir+"k06.jpeg",dir+"k07.jpeg"];
+
+ s = '';
+for (i = 0; i < Arim.length; i++) {s = s+'<img  class=m  src='+Arim[i]+'>'}
+p0.innerHTML = s;
+
+ bg = document.getElementsByClassName("bg"); nbg=bg.length;
+ pic=document.getElementsByClassName("a"); npic=pic.length;
+ pc0=document.getElementsByClassName("m"); npc0=pc0.length;
+act=false;  ibg=0;  ntek=0; ntek2=1;  dbg=80; dp0=50;    tint=20; nfin=400;
+     
+dlx=1/500;  lxtek=0;
+xc=bg[0].width/2-50;  yc=bg[0].height/2-50;  rpy=0.9*yc; rpx=1.4*rpy; 
+a0=0; a1=0.3; a2=0.6; a3=0.7; a4=1;            
+   
+xpf=280; ng=0;  opt=0;  kpic=0;
+
+  for (j = 1; j < nbg; j++) {bg[j].style.opacity=0; } 
+
+ function xyt(x1,x2,k1,k2)
+   { if ((ibg>x1)&&(ibg<=x2)) { opt=k1+(k2-k1)/(x2-x1)*(ibg-x1); }}
+
+function ris(){ lxtek=lxtek-dlx;
+if (lxtek>1) {lxtek=lxtek-1}; if (lxtek<=0) {lxtek=lxtek+1}
+for (j = 0; j < npic; j++) { 
+ lt= 1/npic*j-lxtek; if (lt>1) {lt=lt-1}; if (lt<0) {lt=lt+1}
+ 
+ if ((lt>=a0)&&(lt<=a1)) {xp=xc - rpx+2*rpx/(a1-a0)*lt; yp=yc-rpy;}
+ if ((lt>=a1)&&(lt<=a2)) {xp=xc+rpx; yp=yc-rpy+2*rpy/(a2-a1)*(lt-a1)}
+ if ((lt>=a2)&&(lt<=a3)) {xp=xc+rpx-2*rpx/(a3-a2)*(lt-a2); yp=yc+1.05*rpy;}
+ if ((lt>=a3)&&(lt<=a4)) {xp=xc-rpx; yp=yc+rpy-2*rpy/(a4-a3)*(lt-a3)}
+ pic[j].style.left=xp+"px";  pic[j].style.top=yp+"px";
+ pic[j].style.opacity=kpic;}
+
+ pc0[ng].style.width=280*opt+"px";
+ pc0[ng].style.left=xpf+140-140*opt+"px";    pc0[ng].style.opacity=1;  }
+
+ris();
+
+function GoCloud(){
+ act=!act; if (act) {b1.value='STOP'; b1.style.background='rgb(100,0,0)'} else 
+ {b1.value='PLAY'; b1.style.background='rgb(0,100,0)'}
+ let tim = setTimeout(function timer() {if (!act) {clearInterval(tim)} else { ibg++; Cloud();}
+if (act) tim = setTimeout(timer, tint);
+},tint); }
+
+ function tbg(x1,x2,y1,y2) { if ((ibg>x1)&&(ibg<=x2)) yt=y1+(y2-y1)/(x2-x1)*(ibg-x1);
+ if (kpb==0) kpic=yt; if (kpb==1) kop=yt; }
+
+function Cloud(){ kpb=0;
+tbg(0,50,0,0);  tbg(50,50+dbg,0,1); tbg(dbg+50,nfin-dbg,1,1); tbg(nfin-dbg,nfin,1,0);
+kpb=1;
+tbg(0,nfin-dbg,0,0); tbg(nfin-dbg,nfin,0,1);
+bg[ntek].style.opacity=1-kop; bg[ntek2].style.opacity=kop; 
+
+xyt(0,dp0,0,0);    xyt(dp0,dbg,0,1);
+xyt(dbg,nfin-dbg,1,1);
+xyt(nfin-dbg,nfin,1,0);
+
+ris();
+if (ibg==nfin) {ng++; if (ng==npc0) ng=0;  ntek=ntek+1; if (ntek==(nbg-1)) {ntek2=0;} else {ntek2=ntek+1;}if (ntek==(nbg)) {ntek=0; ntek2=1;}; ibg=0;}} 
+
+</script>
+</body></html>
