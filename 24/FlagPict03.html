@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <link rel="icon" href="../../JS22/ICO/murr.ico" type="image/x-icon">
+   <title>FlagPict03</title>
+    <style>  
+     #bt{width: 60px; border-radius: 30px; height: 60px; background-color: rgb(0,100,0); color: white;}
+     .bt2{width: 60px; background-color: rgb(0,150,0); color: white}
+     .bt4{margin-top: 550px; margin-left: 240px; width: 60px; background-color: rgb(155,0,0); color: white}
+     #im0 {position: absolute; margin-left: 10px; width: 700px; height: 530px; z-index: 0;}
+     #im1 {position: absolute; margin-left: 200px; width: 350px; z-index: 2;}
+     #im2 {position: fixed; margin-left: 100px; width: 300px;top: 67px; z-index: 1;}
+    </style>  
+  </head>   
+<body>
+  
+   <img id="im0" src="bg-01.jpg">
+   <img id="im1" src="2403.png">
+   <img id="im2" src="Paddy_00.png"> 
+
+  <input type='button' class="bt4" value='slow'onclick="tint*=1.2">
+  <input type='button' id="bt" value='PLAY' onclick=' act = (!act); Run()'>
+  <input type='button' class="bt2" value='fast'onclick="tint/=1.2"> <br><br>
+ <script>
+
+  let act=false;  let tint=50; 
+  RX=300;  XC=130;
+  pi=Math.PI;     dfi=0.089771; fit=0.8*pi;
+ 
+Ris();
+ 
+function Run(){
+ if (!act) {bt.style.backgroundColor='rgb(0,100,0)'; bt.value='PLAY'} else 
+   {bt.style.backgroundColor='rgb(155,0,0)'; bt.value='STOP'; } 
+  let timerId = setTimeout(function timer() {Ris();
+if (act) timerId = setTimeout(timer, tint);
+}, tint);}
+
+function Ris(){ 
+ xp=XC+RX*Math.cos(fit); fir=fit-pi/2;    
+
+if (fit>pi) {im1.style.zIndex='0'} else {im1.style.zIndex='2'}
+
+im2.style.left=xp+"px";
+im2.style.transform=" rotateY("+fir+"rad)  ";
+fit=fit+dfi;   if (fit>2*pi) {fit=fit-2*pi;  }
+} 
+
+  </script>
+</body>
+</html>
